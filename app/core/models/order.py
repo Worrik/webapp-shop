@@ -46,7 +46,7 @@ class Order:
     products: List[Product]
 
 
-@strawberry.type
+@strawberry.input
 class OrderProduct:
     id: int
     val: int

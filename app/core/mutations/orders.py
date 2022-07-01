@@ -1,7 +1,6 @@
 from typing import List
 from strawberry.types import Info
 from app.core.models.order import Order, OrderModel, OrderProduct, OrderProductModel
-from app.core.models.product import ProductModel
 
 from app.core.models.user import UserModel
 
