@@ -12,5 +12,11 @@ bot = Bot(token=TOKEN)
 async def send_order(user: UserModel, order_products: List[OrderProductModel]):
     await bot.answer_web_app_query(
         user.web_app_data.get("query_id"),
-        types.InlineQueryResult(text=format_order(order_products)),
+        types.InlineQueryResultArticle(
+            id="1",
+            title="Order summary:",
+            input_message_content=types.InputMessageContent(
+                message_text=format_order(order_products)
+            ),
+        ),
     )
