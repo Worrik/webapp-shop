@@ -14,9 +14,10 @@ async def send_order(user: UserModel, order_products: List[OrderProductModel]):
         user.web_app_data.get("query_id"),
         types.InlineQueryResultArticle(
             id="1",
-            title="Order summary:",
+            title="1",
             input_message_content=types.InputMessageContent(
-                message_text=format_order(order_products)
+                message_text=format_order(order_products),
+                parse_mode=types.ParseMode.HTML
             ),
         ),
     )

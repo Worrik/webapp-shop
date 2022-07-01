@@ -4,11 +4,11 @@ from app.core.models.order import OrderProductModel
 
 
 def format_order(order_products: List[OrderProductModel]) -> str:
-    res = io.StringIO()
+    res = io.StringIO("Order summary:\n")
     res.writelines(
         [
             f"{op.product.name} x{op.amount} — "
-            f"<b>${(op.product.price * op.amount):.2f}</b>"
+            f"<b>${(op.product.price * op.amount):.2f}</b>\n"
             for op in order_products
         ]
     )
