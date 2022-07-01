@@ -1,9 +1,9 @@
 from typing import List
 from strawberry.types import Info
 from app.core.models.order import Order, OrderModel
-from app.core.models.product import Product, ProductModel
+from app.core.models.product import ProductModel
 
-from app.core.models.user import User, UserModel
+from app.core.models.user import UserModel
 
 
 async def create_order(info: Info, products_ids: List[int]) -> Order:
@@ -14,6 +14,6 @@ async def create_order(info: Info, products_ids: List[int]) -> Order:
     await order.products.add(*products)
     return Order(
         id=order.id,
-        user=User(**dict(user)),
-        products=[Product(**dict(product)) for product in products],
+        user=user,
+        products=products,
     )
