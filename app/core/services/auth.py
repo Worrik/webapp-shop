@@ -25,4 +25,6 @@ async def telegram_auth(Authorization: str = Header()) -> UserModel:
             language_code=user_data["data"]["language_code"],
         )
 
+    user.web_app_data = user_data
+
     return user
