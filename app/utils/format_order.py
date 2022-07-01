@@ -5,7 +5,7 @@ from app.core.models.order import OrderProductModel
 
 def format_order(order_products: List[OrderProductModel]) -> str:
     res = io.StringIO()
-    res.write("Order summary:\n")
+    res.write("Order summary:\n\n")
     res.writelines(
         [
             f"{op.product.name} x{op.amount} — "
