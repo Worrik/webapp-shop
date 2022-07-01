@@ -2,7 +2,7 @@ from fastapi.applications import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from tortoise.contrib.fastapi import register_tortoise
-from app.auth import telegram_auth
+from app.core.services.auth import telegram_auth
 from app.config.config import TORTOISE_ORM
 from app.core.models.user import UserModel
 from app.schema import graphql_app

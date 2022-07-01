@@ -2,7 +2,7 @@ from fastapi.param_functions import Depends
 import strawberry
 
 from strawberry.fastapi import GraphQLRouter
-from app.auth import telegram_auth
+from app.core.services.auth import telegram_auth
 from app.core.mutations.orders import create_order
 
 from app.core.queries.shops import get_shops
