@@ -1,19 +1,20 @@
 from typing import List
 from strawberry.types import Info
-from app.core.models.order import Order, OrderModel
+from app.core.models.order import Order, OrderModel, OrderProduct, OrderProductModel
 from app.core.models.product import ProductModel
 
 from app.core.models.user import UserModel
 
 
-async def create_order(info: Info, products_ids: List[int]) -> Order:
-    print(info.context)
+async def create_order(info: Info, order_products: List[OrderProduct]) -> Order:
     user: UserModel = info.context["user"]
-    products = await ProductModel.filter(id__in=products_ids)
     order = await OrderModel.create(user=user)
-    await order.products.add(*products)
+    await OrderProductModel.bulk_create([
+        OrderProductModel(order=order, product=product.id, amount=product.val)
+        for product in order_products
+    ])
     return Order(
         id=order.id,
         user=user,
-        products=products,
+        products=order.products.all(),
     )
