@@ -21,9 +21,9 @@ async def telegram_auth(Authorization: str = Header()) -> UserModel:
     if not user:
         user = await UserModel.create(
             telegram_id=user_data["user"]["id"],
-            first_name=user_data["data"]["first_name"],
-            last_name=user_data["data"]["last_name"],
-            language_code=user_data["data"]["language_code"],
+            first_name=user_data["user"]["first_name"],
+            last_name=user_data["user"]["last_name"],
+            language_code=user_data["user"]["language_code"],
         )
 
     user.web_app_data = user_data
