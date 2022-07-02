@@ -1,5 +1,6 @@
 aerich==0.6.3
-aiogram==2.21
+aiofiles==0.8.0
+aiogram==3.0.0b3
 aiohttp==3.8.1
 aiosignal==1.2.0
 aiosqlite==0.17.0
@@ -22,6 +23,7 @@ h11==0.13.0
 httptools==0.4.0
 idna==3.3
 iso8601==1.0.2
+magic-filter==1.0.7
 marshmallow==3.16.0
 multidict==6.0.2
 packaging==21.3

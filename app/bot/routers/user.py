@@ -9,6 +9,7 @@ from aiogram.types import (
 )
 
 from app.config import config
+from app.models.shop import ShopModel
 from app.models.user import UserModel
 
 
@@ -26,12 +27,14 @@ async def command_start(message: Message, bot: Bot):
             language_code=message.from_user.language_code,
         )
 
+    shop = await ShopModel.get(bot_token=bot.token)
+
     await bot.set_chat_menu_button(
         chat_id=message.chat.id,
         menu_button=MenuButtonWebApp(
             type="web_app",
             text="Open Menu",
-            web_app=WebAppInfo(url=f"{config.BASE_URL}/demo"),
+            web_app=WebAppInfo(url=f"{config.BASE_URL}/web"),
         ),
     )
     await message.answer(
@@ -41,7 +44,7 @@ async def command_start(message: Message, bot: Bot):
                 [
                     InlineKeyboardButton(
                         text="Open",
-                        web_app=WebAppInfo(url=f"{config.BASE_URL}/demo"),
+                        web_app=WebAppInfo(url=f"{config.BASE_URL}/web"),
                     )
                 ]
             ]

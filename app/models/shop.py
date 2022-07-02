@@ -9,7 +9,7 @@ class ShopModel(TimestampModel):
     name = fields.CharField(max_length=255)
     description = fields.TextField()
     owner = fields.ForeignKeyField("models.UserModel", related_name="shops")
-    bot_token = fields.CharField(50)
+    bot_token = fields.CharField(50, unique=True)
 
     class Meta:
         table = "shop"
