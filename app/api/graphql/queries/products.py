@@ -1,6 +1,6 @@
-from typing import List, Optional
+from typing import List
 
-from app.core.models.product import Product, ProductModel
+from app.models.product import Product, ProductModel
 from app.utils.strawberry_from_orm import from_queryset
 
 

@@ -1,11 +1,12 @@
 import strawberry
 from tortoise import fields
 
-from app.core.models.base import TimestampModel
+from app.models.base import TimestampModel
 from tortoise.contrib.pydantic.creator import pydantic_model_creator
 
 
 class ProductModel(TimestampModel):
+    shop = fields.ForeignKeyField('models.ShopModel')
     name = fields.CharField(max_length=255)
     description = fields.TextField()
     price = fields.DecimalField(max_digits=10, decimal_places=2)

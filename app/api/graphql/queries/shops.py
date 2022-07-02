@@ -1,5 +1,5 @@
 from typing import List
-from app.core.models.shop import ShopModel, Shop
+from app.models.shop import ShopModel, Shop
 from app.utils.strawberry_from_orm import from_queryset
 
 

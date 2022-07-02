@@ -1,7 +1,7 @@
 import strawberry
 from tortoise import fields
 
-from app.core.models.base import TimestampModel
+from app.models.base import TimestampModel
 from tortoise.contrib.pydantic.creator import pydantic_model_creator
 
 
@@ -9,6 +9,7 @@ class ShopModel(TimestampModel):
     name = fields.CharField(max_length=255)
     description = fields.TextField()
     owner = fields.ForeignKeyField("models.UserModel", related_name="shops")
+    bot_token = fields.CharField(50)
 
     class Meta:
         table = "shop"

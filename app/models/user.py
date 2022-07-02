@@ -1,6 +1,6 @@
 from typing import Optional
 import strawberry
-from app.core.models.base import TimestampModel
+from app.models.base import TimestampModel
 from tortoise import fields
 
 

@@ -2,15 +2,16 @@ from fastapi.param_functions import Depends
 import strawberry
 
 from strawberry.fastapi import GraphQLRouter
-from app.core.services.auth import telegram_auth
-from app.core.mutations.orders import create_order
+from app.services.auth import telegram_auth
+from .mutations.orders import create_order
 
-from app.core.queries.shops import get_shops
-from app.core.queries.products import get_products, get_products_by_ids, get_products_count
+from .queries.shops import get_shops
+from .queries.products import get_products, get_products_by_ids, get_products_count
 
 
-async def get_context(user=Depends(telegram_auth)):
-    return {"user": user}
+async def get_context(user_shop=Depends(telegram_auth)):
+    user, shop = user_shop
+    return {"user": user, "shop": shop}
 
 
 @strawberry.type

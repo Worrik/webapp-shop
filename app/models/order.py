@@ -2,9 +2,9 @@ from typing import List
 import strawberry
 from tortoise import fields
 
-from app.core.models.base import BaseModel, TimestampModel
-from app.core.models.product import Product
-from app.core.models.user import User
+from app.models.base import BaseModel, TimestampModel
+from app.models.product import Product
+from app.models.user import User
 
 
 class OrderProductModel(BaseModel):
