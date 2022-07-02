@@ -9,6 +9,7 @@ from app.utils.check_web_app import check_webapp_signature
 
 async def telegram_auth(Authorization: str = Header()) -> UserModel:
     user_data = check_webapp_signature(TOKEN, Authorization)
+    print(user_data)
 
     if not user_data:
         raise HTTPException(status_code=401, detail="Unauthorized")
