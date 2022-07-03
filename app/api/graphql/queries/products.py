@@ -24,4 +24,4 @@ async def get_products_by_ids(ids: List[int]) -> List[Product]:
 
 async def get_products_count(info: Info) -> int:
     shop: ShopModel = info.context["shop"]
-    return await shop.products.count()
+    return await shop.products.all().count()
