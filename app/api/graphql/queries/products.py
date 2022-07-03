@@ -1,13 +1,20 @@
-from typing import List
+from typing import List, Optional
 
 from app.models.product import Product, ProductModel
 from app.utils.strawberry_from_orm import from_queryset
 
 
-async def get_products(page: int = 1, per_page: int = 10) -> List[Product]:
+async def get_products(
+    shop_id: Optional[int], page: int = 1, per_page: int = 10
+) -> List[Product]:
+    query = ProductModel.all()
+
+    if shop_id:
+        query = query.filter(shop__id=shop_id)
+
     return await from_queryset(
         Product,
-        ProductModel.all().limit(per_page).offset((page - 1) * per_page),
+        query.limit(per_page).offset((page - 1) * per_page),
     )
 
 
