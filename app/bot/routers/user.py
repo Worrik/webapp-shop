@@ -34,7 +34,7 @@ async def command_start(message: Message, bot: Bot):
         menu_button=MenuButtonWebApp(
             type="web_app",
             text="Open Menu",
-            web_app=WebAppInfo(url=f"{config.BASE_URL}/web"),
+            web_app=WebAppInfo(url=f"{config.BASE_URL}/web?shop={shop.id}"),
         ),
     )
     await message.answer(
@@ -44,7 +44,9 @@ async def command_start(message: Message, bot: Bot):
                 [
                     InlineKeyboardButton(
                         text="Open",
-                        web_app=WebAppInfo(url=f"{config.BASE_URL}/web"),
+                        web_app=WebAppInfo(
+                            url=f"{config.BASE_URL}/web?shop={shop.id}"
+                        ),
                     )
                 ]
             ]
