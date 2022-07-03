@@ -6,7 +6,7 @@ from tortoise.contrib.pydantic.creator import pydantic_model_creator
 
 
 class ProductModel(TimestampModel):
-    shop = fields.ForeignKeyField('models.ShopModel')
+    shop = fields.ForeignKeyField("models.ShopModel", related_name="products")
     name = fields.CharField(max_length=255)
     description = fields.TextField()
     price = fields.DecimalField(max_digits=10, decimal_places=2)
