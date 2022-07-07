@@ -4,7 +4,7 @@ from strawberry.types.info import Info
 
 from app.models.product import Product, ProductModel
 from app.models.shop import ShopModel
-from app.utils.strawberry_from_orm import from_queryset
+from app.utils.strawberry_from_orm import from_queryset, from_queryset_single
 
 
 async def get_products(
@@ -25,3 +25,7 @@ async def get_products_by_ids(ids: List[int]) -> List[Product]:
 async def get_products_count(info: Info) -> int:
     shop: ShopModel = info.context["shop"]
     return await shop.products.all().count()
+
+
+async def get_product_by_id(id: int) -> Product:
+    return await from_queryset_single(Product, ProductModel.get(id=id))

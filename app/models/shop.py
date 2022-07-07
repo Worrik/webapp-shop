@@ -14,6 +14,9 @@ class ShopModel(TimestampModel):
 
     products: QuerySet
 
+    def __str__(self) -> str:
+        return self.name
+
     class Meta:
         table = "shop"
 
