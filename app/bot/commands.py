@@ -26,6 +26,5 @@ async def send_order(
         ),
     )
 
-    owner = await shop.fetch_related('owner__telegram_id')
-    if owner:
-        await bot.send_message(chat_id=owner, text=text)
+    await shop.fetch_related('owner__telegram_id')
+    await bot.send_message(chat_id=shop.owner.telegram_id, text=text)
