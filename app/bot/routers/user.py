@@ -3,7 +3,6 @@ from aiogram.dispatcher.filters import Command
 from aiogram.types import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,
-    MenuButtonWebApp,
     Message,
     WebAppInfo,
 )
@@ -31,14 +30,6 @@ async def command_start(message: Message, bot: Bot):
 
     shop = await ShopModel.get(bot_token=bot.token)
 
-    await bot.set_chat_menu_button(
-        chat_id=message.chat.id,
-        menu_button=MenuButtonWebApp(
-            type="web_app",
-            text="Open Menu",
-            web_app=WebAppInfo(url=f"{config.BASE_URL}/web?shop={shop.id}"),
-        ),
-    )
     await message.answer(
         "Test",
         reply_markup=InlineKeyboardMarkup(
@@ -48,9 +39,9 @@ async def command_start(message: Message, bot: Bot):
                         text="Open",
                         web_app=WebAppInfo(
                             url=f"{config.BASE_URL}/web?shop={shop.id}"
-                        ),
+                        )
                     )
                 ]
             ]
-        ),
+        )
     )

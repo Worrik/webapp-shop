@@ -13,6 +13,8 @@ class UserModel(TimestampModel):
     username = fields.CharField(max_length=255, null=True)
     language_code = fields.CharField(max_length=20, null=True)
 
+    is_admin = fields.BooleanField(default=False)
+
     web_app_data: dict = {}
 
     def __str__(self) -> str:

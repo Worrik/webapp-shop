@@ -16,7 +16,7 @@ from app.models.order import OrderModel
 from app.models.product import ProductModel
 from app.models.shop import ShopModel
 
-from app.models.user import AdminModel, UserModel
+from app.models.user import AdminModel
 
 
 class Dashboard(Link):
