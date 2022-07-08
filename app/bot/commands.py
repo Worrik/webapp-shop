@@ -26,5 +26,5 @@ async def send_order(
         ),
     )
 
-    await shop.fetch_related('owner__telegram_id')
-    await bot.send_message(chat_id=shop.owner.telegram_id, text=text)
+    owner = await UserModel.get(id=shop.owner)
+    await bot.send_message(chat_id=owner.telegram_id, text=text)
