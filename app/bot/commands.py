@@ -26,5 +26,5 @@ async def send_order(
         ),
     )
 
-    owner = await UserModel.get(id=shop.owner)
+    owner: UserModel = await shop.owner.get()
     await bot.send_message(chat_id=owner.telegram_id, text=text)
