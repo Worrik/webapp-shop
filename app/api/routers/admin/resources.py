@@ -12,10 +12,11 @@ from fastapi_admin.resources import (
     ToolbarAction,
 )
 from fastapi_admin.widgets import displays, filters, inputs
+from app.models.order import OrderModel
 from app.models.product import ProductModel
 from app.models.shop import ShopModel
 
-from app.models.user import AdminModel
+from app.models.user import AdminModel, UserModel
 
 
 class Dashboard(Link):
@@ -71,7 +72,7 @@ class AdminResource(Model):
 
 
 class CategoryResource(Model):
-    label = "Shop"
+    label = "Shops"
     model = ShopModel
     fields = [
         "name",
@@ -88,7 +89,7 @@ class CategoryResource(Model):
 
 
 class ProductResource(Model):
-    label = "Product"
+    label = "Products"
     model = ProductModel
     fields = [
         "id",
@@ -108,10 +109,34 @@ class ProductResource(Model):
     ]
 
 
+class OrderResource(Model):
+    label = "Orders"
+    model = OrderModel
+    fields = [
+        "id",
+        Field(
+            name="user__first_name",
+            label="User first name",
+        ),
+        Field(
+            name="user__last_name",
+            label="User last name",
+        ),
+        Field(
+            name="user__telegram_id",
+            label="User telegram ID",
+        ),
+        Field(
+            name="user__username",
+            label="User username",
+        ),
+    ]
+
+
 class Content(Dropdown):
     label = "Content"
     icon = "fas fa-bars"
-    resources = [ProductResource, CategoryResource]
+    resources = [ProductResource, CategoryResource, OrderResource]
 
 
 def register_admin(app: FastAPIAdmin):

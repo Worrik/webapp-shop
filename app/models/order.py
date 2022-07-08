@@ -1,6 +1,8 @@
 from typing import List
 import strawberry
 from tortoise import fields
+from tortoise.manager import Manager
+from tortoise.queryset import QuerySet
 
 from app.models.base import BaseModel, TimestampModel
 from app.models.product import Product
@@ -20,6 +22,11 @@ class OrderProductModel(BaseModel):
         table = "orders_products"
 
 
+class OrderManager(Manager):
+    def get_queryset(self) -> QuerySet:
+        return super().get_queryset().prefetch_related("user")
+
+
 class OrderModel(TimestampModel):
     user = fields.ForeignKeyField(
         "models.UserModel",
@@ -37,6 +44,7 @@ class OrderModel(TimestampModel):
 
     class Meta:
         table = "orders"
+        manager = OrderManager()
 
 
 @strawberry.type
