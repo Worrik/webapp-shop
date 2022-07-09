@@ -1,5 +1,6 @@
 import datetime
 from typing import Optional
+from aiogram import types
 import strawberry
 from app.models.base import TimestampModel
 from tortoise import fields
@@ -12,6 +13,7 @@ class UserModel(TimestampModel):
     last_name = fields.CharField(max_length=255, null=True)
     username = fields.CharField(max_length=255, null=True)
     language_code = fields.CharField(max_length=20, null=True)
+    is_bot = fields.BooleanField(default=False)
 
     is_admin = fields.BooleanField(default=False)
 
@@ -19,6 +21,17 @@ class UserModel(TimestampModel):
 
     def __str__(self) -> str:
         return f"{self.telegram_id}: {self.first_name} {self.last_name or ''}"
+
+    @property
+    def telegram_user(self) -> types.User:
+        return types.User(
+            id=self.telegram_id,
+            is_bot=False,
+            first_name=self.first_name,
+            last_name=self.last_name,
+            username=self.username,
+            language_code=self.language_code,
+        )
 
     class Meta:
         table = "user"
