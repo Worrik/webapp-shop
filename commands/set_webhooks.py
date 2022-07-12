@@ -2,7 +2,7 @@ from tortoise import Tortoise
 from aiogram.client.bot import Bot
 
 from app.config import config
-from app.models import ShopModel
+from db_models import ShopModel
 
 import asyncio
 
