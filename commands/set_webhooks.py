@@ -12,9 +12,8 @@ async def main():
 
     async for shop in ShopModel.all():
         bot = Bot(token=shop.bot_token, **config.bot_settings)
-        print(
-            await bot.set_webhook(f"{config.BASE_URL}/bots/{shop.bot_token}/")
-        )
+        url = f"{config.BASE_URL}/bots/{shop.bot_token}/"
+        print(url, await bot.set_webhook(url))
 
 
 if __name__ == "__main__":
