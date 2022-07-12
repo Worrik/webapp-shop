@@ -3,15 +3,13 @@ from aiogram.client.bot import Bot
 from strawberry.types import Info
 from app.models.order import (
     Order,
-    OrderModel,
     OrderProduct,
-    OrderProductModel,
 )
 from app.models.product import ProductModel
 from app.models.shop import ShopModel
 
-from app.models.user import UserModel
-from app.bot.commands import send_order
+from app.services.bot.commands import send_order
+from db_models import UserModel, OrderModel, OrderProductModel
 
 
 async def create_order(info: Info, order_products: List[OrderProduct]) -> Order:

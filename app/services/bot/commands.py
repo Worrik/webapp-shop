@@ -1,8 +1,7 @@
 from typing import List
 from aiogram import Bot, types
 
-from app.models import UserModel
-from app.models.order import OrderProductModel
+from db_models import UserModel, OrderProductModel
 from app.models.shop import ShopModel
 from app.utils.format_order import format_order
 

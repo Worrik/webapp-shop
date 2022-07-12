@@ -12,11 +12,7 @@ from fastapi_admin.resources import (
     ToolbarAction,
 )
 from fastapi_admin.widgets import displays, filters, inputs
-from app.models.order import OrderModel
-from app.models.product import ProductModel
-from app.models.shop import ShopModel
-
-from app.models.user import AdminModel
+from db_models import OrderModel, ProductModel, ShopModel, AdminModel
 
 
 class Dashboard(Link):

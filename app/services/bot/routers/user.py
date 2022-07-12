@@ -8,8 +8,7 @@ from aiogram.types import (
 )
 
 from app.config import config
-from app.models.shop import ShopModel
-from app.models.user import UserModel
+from db_models import UserModel, ShopModel
 
 
 router = Router()

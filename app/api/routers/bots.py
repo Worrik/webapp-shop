@@ -2,7 +2,7 @@ from aiogram.client.bot import Bot
 from aiogram.types.update import Update
 from fastapi import APIRouter
 
-from app.bot.dispatcher import dp
+from app.services.bot.dispatcher import dp
 from app.config import config
 
 router = APIRouter()

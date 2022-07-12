@@ -4,7 +4,7 @@ from fastapi import Header, HTTPException
 import json
 from app.models.shop import ShopModel
 
-from app.models.user import UserModel
+from db_models import UserModel
 from app.utils.check_web_app import check_webapp_signature
 
 

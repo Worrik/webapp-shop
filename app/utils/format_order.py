@@ -1,6 +1,6 @@
 import io
 from typing import List
-from app.models.order import OrderProductModel
+from db_models import OrderProductModel
 
 
 def format_order(order_products: List[OrderProductModel]) -> str:

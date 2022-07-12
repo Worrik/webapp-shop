@@ -1,29 +1,7 @@
 import strawberry
-from tortoise import fields
 
-from app.models.base import TimestampModel
 from tortoise.contrib.pydantic.creator import pydantic_model_creator
-
-
-class ImageModel(TimestampModel):
-    product = fields.ForeignKeyField(
-        "models.ProductModel", related_name="images"
-    )
-    url = fields.TextField()
-
-
-class ProductModel(TimestampModel):
-    shop = fields.ForeignKeyField("models.ShopModel", related_name="products")
-    name = fields.CharField(max_length=255)
-    description = fields.TextField()
-    price = fields.DecimalField(max_digits=10, decimal_places=2)
-    image_url = fields.TextField(null=True)
-
-    class Meta:
-        table = "product"
-
-    class PydanticMeta:
-        exclude = ("created_at", "updated_at")
+from db_models import ProductModel
 
 
 Product_Pydantic = pydantic_model_creator(ProductModel, name="Product")

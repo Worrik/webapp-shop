@@ -8,8 +8,7 @@ from app.api.routers.admin.providers import LoginProvider
 from app.api.routers.admin.resources import register_admin
 
 from app.services.auth import telegram_auth
-from app.config.config import BASE_DIR, TORTOISE_ORM
-from app.models.user import AdminModel, UserModel
+from app.config.config import TORTOISE_ORM
 from app.api.graphql.schema import graphql_app
 from app.api.routers import bots
 from app.config import config
@@ -28,6 +27,7 @@ from fastapi_admin.exceptions import (
     server_error_exception,
     unauthorized_error_exception,
 )
+from db_models import UserModel, AdminModel
 
 
 def init(app: FastAPI) -> None:

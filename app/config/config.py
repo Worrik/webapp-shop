@@ -1,6 +1,7 @@
 import os
 from aiogram.client.session.aiohttp import AiohttpSession
 from environs import Env
+from db_models import config
 
 env = Env()
 env.read_env()
@@ -10,15 +11,7 @@ BASE_URL = env.str("BASE_URL", "http://localhost:8000")
 REDIS_URL = env.str("REDIS_URL", "redis://localhost:6379/0")
 
 
-TORTOISE_ORM = {
-    "connections": {"default": DATABASE_URL},
-    "apps": {
-        "models": {
-            "models": ["app.models", "aerich.models"],
-            "default_connection": "default",
-        },
-    },
-}
+TORTOISE_ORM = config.TORTOISE_ORM
 
 session = AiohttpSession()
 bot_settings = {"session": session, "parse_mode": "HTML"}
