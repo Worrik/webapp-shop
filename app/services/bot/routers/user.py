@@ -29,18 +29,14 @@ async def command_start(message: Message, bot: Bot):
 
     shop = await ShopModel.get(bot_token=bot.token)
 
+    url = f"{config.BASE_URL}/web?shop={shop.id}"
+    print(url)
+
     await message.answer(
         shop.name,
         reply_markup=InlineKeyboardMarkup(
             inline_keyboard=[
-                [
-                    InlineKeyboardButton(
-                        text="Open",
-                        web_app=WebAppInfo(
-                            url=f"{config.BASE_URL}/web?shop={shop.id}"
-                        )
-                    )
-                ]
+                [InlineKeyboardButton(text="Open", web_app=WebAppInfo(url=url))]
             ]
-        )
+        ),
     )
