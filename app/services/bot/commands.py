@@ -29,4 +29,8 @@ async def send_order(
     m = await bot.send_message(
         chat_id=owner.telegram_id, text=text, parse_mode="HTML"
     )
-    await m.reply(f"From user {owner}")
+    await bot.send_message(
+        text=f"From user {owner}",
+        chat_id=owner.telegram_id,
+        reply_to_message_id=m.message_id,
+    )
