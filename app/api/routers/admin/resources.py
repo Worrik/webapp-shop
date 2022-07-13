@@ -1,4 +1,5 @@
 from typing import List
+from db_models.user import UserModel
 from fastapi_admin.app import FastAPIAdmin
 
 from starlette.requests import Request
@@ -67,7 +68,7 @@ class AdminResource(Model):
         return []
 
 
-class CategoryResource(Model):
+class ShopResource(Model):
     label = "Shops"
     model = ShopModel
     fields = [
@@ -105,34 +106,24 @@ class ProductResource(Model):
     ]
 
 
+class UserResource(Model):
+    label = "Users"
+    model = UserModel
+
+
 class OrderResource(Model):
     label = "Orders"
     model = OrderModel
     fields = [
         "id",
-        Field(
-            name="user__first_name",
-            label="User first name",
-        ),
-        Field(
-            name="user__last_name",
-            label="User last name",
-        ),
-        Field(
-            name="user__telegram_id",
-            label="User telegram ID",
-        ),
-        Field(
-            name="user__username",
-            label="User username",
-        ),
+        "user"
     ]
 
 
 class Content(Dropdown):
     label = "Content"
     icon = "fas fa-bars"
-    resources = [ProductResource, CategoryResource, OrderResource]
+    resources = [ProductResource, ShopResource, OrderResource]
 
 
 def register_admin(app: FastAPIAdmin):
