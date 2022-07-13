@@ -1,5 +1,5 @@
+from fastapi import Header
 from typing import Optional, Tuple
-from starlette.requests import Request
 
 import json
 from app.models.shop import ShopModel
@@ -9,15 +9,10 @@ from app.utils.check_web_app import check_webapp_signature
 
 
 async def telegram_auth(
-    request: Request,
-    shop_id: Optional[int] = None,
+    shop_id: int,
+    Authorization: str = Header()
 ) -> Tuple[Optional[UserModel], ShopModel]:
-    if shop_id:
-        shop = await ShopModel.get(id=shop_id)
-    else:
-        shop = await ShopModel.first()
-
-    Authorization = request.headers.get("Authorization", "")
+    shop = await ShopModel.get(id=shop_id)
 
     user_data = check_webapp_signature(shop.bot_token, Authorization)
 
