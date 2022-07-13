@@ -123,7 +123,7 @@ class OrderResource(Model):
 class Content(Dropdown):
     label = "Content"
     icon = "fas fa-bars"
-    resources = [ProductResource, ShopResource, OrderResource]
+    resources = [ProductResource, ShopResource, OrderResource, UserResource]
 
 
 def register_admin(app: FastAPIAdmin):
