@@ -30,7 +30,7 @@ async def command_start(message: Message, bot: Bot):
     shop = await ShopModel.get(bot_token=bot.token)
 
     await message.answer(
-        "Test",
+        shop.name,
         reply_markup=InlineKeyboardMarkup(
             inline_keyboard=[
                 [

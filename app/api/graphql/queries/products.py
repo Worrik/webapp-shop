@@ -15,6 +15,7 @@ async def get_products(
     return await from_queryset(
         Product,
         shop.products.limit(per_page).offset((page - 1) * per_page),
+        extra={'currency': shop.currency}
     )
 
 
