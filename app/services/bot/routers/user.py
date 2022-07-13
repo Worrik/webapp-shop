@@ -29,7 +29,7 @@ async def command_start(message: Message, bot: Bot):
 
     shop = await ShopModel.get(bot_token=bot.token)
 
-    url = f"{config.BASE_URL}/web?shop={shop.id}"
+    url = f"{config.BASE_URL}/web/?shop={shop.id}"
 
     await message.answer(
         shop.name,
