@@ -72,7 +72,8 @@ class ShopResource(Model):
     label = "Shops"
     model = ShopModel
     fields = [
-        "name",
+        "name_en",
+        "name_uk",
         "owner",
         Field(
             name="description",

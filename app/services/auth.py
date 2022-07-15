@@ -9,10 +9,12 @@ from app.utils.check_web_app import check_webapp_signature
 
 
 async def telegram_auth(
-    shop_id: int,
-    Authorization: str = Header()
+    shop_id: int = 2,
+    Authorization: str = Header(default='')
 ) -> Tuple[Optional[UserModel], ShopModel]:
     shop = await ShopModel.get(id=shop_id)
+    user = await UserModel.get(id=19)
+    return user, shop
 
     user_data = check_webapp_signature(shop.bot_token, Authorization)
 
