@@ -18,9 +18,12 @@ router = Router()
 
 @router.message(Command(commands=["start"]))
 async def command_start(message: Message, bot: Bot):
+    if not message.from_user:
+        return
+
     user = await UserModel.get_or_none(telegram_id=message.from_user.id)
 
-    if message.from_user and not user:
+    if not user:
         user = await UserModel.create(
             telegram_id=message.from_user.id,
             first_name=message.from_user.first_name,

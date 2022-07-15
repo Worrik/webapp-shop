@@ -32,10 +32,3 @@ class Shop:
     description_uk: str
 
     currency: CurrenciesEnum
-
-
-@strawberry.experimental.pydantic.input(model=Shop_Pydantic)
-class ShopIn:
-    name: strawberry.auto
-    description: strawberry.auto
-    bot_token: strawberry.auto
