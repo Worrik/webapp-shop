@@ -13,8 +13,6 @@ async def telegram_auth(
     Authorization: str = Header(default='')
 ) -> Tuple[Optional[UserModel], ShopModel]:
     shop = await ShopModel.get(id=shop_id)
-    user = await UserModel.get(id=19)
-    return user, shop
 
     user_data = check_webapp_signature(shop.bot_token, Authorization)
 
