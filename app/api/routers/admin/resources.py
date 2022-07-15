@@ -76,7 +76,12 @@ class ShopResource(Model):
         "name_uk",
         "owner",
         Field(
-            name="description",
+            name="description_en",
+            label="Description",
+            display=displays.InputOnly(),
+        ),
+        Field(
+            name="description_uk",
             label="Description",
             display=displays.InputOnly(),
         ),
