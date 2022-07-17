@@ -41,7 +41,12 @@ def init(app: FastAPI) -> None:
 def init_routers(app: FastAPI) -> None:
     app.include_router(graphql_app, prefix="/graphql")
     app.include_router(bots.router, prefix="/bots")
-    app.mount("/web", StaticFiles(directory="web", html=True), name="web")
+    app.mount(
+        "/web", StaticFiles(directory="static/web", html=True), name="web"
+    )
+    app.mount(
+        "/admin", StaticFiles(directory="static/admin", html=True), name="web"
+    )
 
 
 def init_db(app: FastAPI) -> None:

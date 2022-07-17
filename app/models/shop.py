@@ -1,3 +1,4 @@
+from typing import Optional
 from db_models.shop import Currencies
 from tortoise.contrib.pydantic.creator import pydantic_model_creator
 from db_models import ShopModel
@@ -32,3 +33,14 @@ class Shop:
     description_uk: str
 
     currency: CurrenciesEnum
+
+
+@strawberry.input
+class ShopIn:
+    name_en: Optional[str] = None
+    name_uk: Optional[str] = None
+
+    description_en: Optional[str] = None
+    description_uk: Optional[str] = None
+
+    currency: Optional[CurrenciesEnum] = None
