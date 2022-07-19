@@ -3,16 +3,16 @@ from db_models.shop import ShopModel
 from db_models.user import UserModel
 from strawberry.types.info import Info
 
-from app.models.errors import NotFoundError
+from app.models.errors import Error
 from app.models.shop import Shop, ShopIn
 
 
-async def update_shop(id: int, info: Info, shop: ShopIn) -> Union[Shop, NotFoundError]:
+async def update_shop(id: int, info: Info, shop: ShopIn) -> Union[Shop, Error]:
     user: Optional[UserModel] = info.context.get("user")
     shop_obj = await ShopModel.get_or_none(id=id, owner=user)
 
     if not shop_obj:
-        return NotFoundError(message="Shop not found")
+        return Error(message="Shop not found")
 
     shop_obj.name_en = shop.name_en or shop_obj.name_en
     shop_obj.name_uk = shop.name_uk or shop_obj.name_uk
