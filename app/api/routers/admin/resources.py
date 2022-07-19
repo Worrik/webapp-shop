@@ -19,7 +19,7 @@ from db_models import OrderModel, ProductModel, ShopModel, AdminModel
 class Dashboard(Link):
     label = "Dashboard"
     icon = "fas fa-home"
-    url = "/admin"
+    url = "/admin-panel"
 
 
 class AdminResource(Model):
