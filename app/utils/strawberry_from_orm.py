@@ -2,13 +2,14 @@ from typing import List, Type
 from strawberry.experimental.pydantic.conversion_types import (
     StrawberryTypeFromPydantic,
 )
-from tortoise.models import Model
 
 from tortoise.queryset import QuerySet, QuerySetSingle
 
 
 async def from_queryset(
-    cls: Type[StrawberryTypeFromPydantic], query_set: QuerySet, extra: dict = {}
+    cls: Type[StrawberryTypeFromPydantic],
+    query_set: QuerySet,
+    extra: dict = {},
 ) -> List[StrawberryTypeFromPydantic]:
     pydantic_model = cls._pydantic_type
     res = await pydantic_model.from_queryset(query_set)

@@ -12,7 +12,9 @@ from app.services.bot.commands import send_order
 from db_models import UserModel, OrderModel, OrderProductModel
 
 
-async def create_order(info: Info, order_products: List[OrderProduct]) -> Order:
+async def create_order(
+    info: Info, order_products: List[OrderProduct]
+) -> Order:
     user: UserModel = info.context["user"]
     shop: ShopModel = info.context["shop"]
 
@@ -29,7 +31,9 @@ async def create_order(info: Info, order_products: List[OrderProduct]) -> Order:
     ]
     await OrderProductModel.bulk_create(order_products_objs)
 
-    await send_order(Bot(token=shop.bot_token), user, order_products_objs, shop)
+    await send_order(
+        Bot(token=shop.bot_token), user, order_products_objs, shop
+    )
 
     return Order(
         id=order.id,

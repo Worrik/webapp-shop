@@ -6,6 +6,8 @@ app = FastAPI()
 
 init(app)
 
+
 def run():
     import uvicorn
+
     uvicorn.run("app.main:app")

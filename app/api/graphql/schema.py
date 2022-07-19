@@ -7,7 +7,12 @@ from .mutations.orders import create_order
 from .mutations.shops import update_shop
 
 from .queries.shops import get_my_shops, get_shop_by_id, get_shops
-from .queries.products import get_products, get_products_by_ids, get_products_count
+from .queries.products import (
+    get_my_shop_products,
+    get_products,
+    get_products_by_ids,
+    get_products_count,
+)
 
 
 async def get_context(user_shop=Depends(telegram_auth)):
@@ -23,6 +28,7 @@ class Query:
     products = strawberry.field(resolver=get_products)
     products_by_ids = strawberry.field(resolver=get_products_by_ids)
     products_count = strawberry.field(resolver=get_products_count)
+    my_shop_products = strawberry.field(resolver=get_my_shop_products)
 
 
 @strawberry.type
@@ -33,7 +39,4 @@ class Mutation:
 
 schema = strawberry.Schema(query=Query, mutation=Mutation)
 
-graphql_app = GraphQLRouter(
-    schema,
-    context_getter=get_context
-)
+graphql_app = GraphQLRouter(schema, context_getter=get_context)

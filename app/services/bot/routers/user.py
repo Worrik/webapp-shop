@@ -40,7 +40,11 @@ async def command_start(message: Message, bot: Bot):
         translate(shop, "name", user),
         reply_markup=InlineKeyboardMarkup(
             inline_keyboard=[
-                [InlineKeyboardButton(text="Open", web_app=WebAppInfo(url=url))]
+                [
+                    InlineKeyboardButton(
+                        text="Open", web_app=WebAppInfo(url=url)
+                    )
+                ]
             ]
         ),
     )
