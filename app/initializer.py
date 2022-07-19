@@ -100,4 +100,4 @@ def init_admin(app: FastAPI):
             redis=redis,
         )
 
-    app.mount("/admin", admin_app)
+    app.mount("/admin-panel", admin_app)
