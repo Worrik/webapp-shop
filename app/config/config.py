@@ -8,6 +8,7 @@ env.read_env()
 
 DATABASE_URL = env.str("DATABASE_URL")
 BASE_URL = env.str("BASE_URL", "http://localhost:8000")
+WEBHOOK_URL = env.str("WEBHOOK_URL")
 REDIS_URL = env.str("REDIS_URL", "redis://localhost:6379/0")
 
 
