@@ -20,7 +20,7 @@ def init(app: FastAPI) -> None:
 
 def init_routers(app: FastAPI) -> None:
     app.include_router(graphql_app, prefix="/graphql")
-    app.include_router(bots.router, prefix="/bots")
+    app.include_router(bots.router, prefix="/shopbot")
     app.mount(
         "/web", StaticFiles(directory="static/web", html=True), name="web"
     )
